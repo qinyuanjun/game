@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>让坦克开起来</title>
+		<style type="text/css">
+			input{font-size:26px;margin-top: 20px;}
+			body{background-image: url(images/grassland.png);}
+			#mytank{position: absolute;left:10px;top:100px;}
+		</style>
+	</head>
+	<body>		 
+		<img id="mytank" src="images/right.png"/>
+		<script>
+			/**
+			 * 坦克游戏作业
+			 * 作者：189000332 秦远俊
+			 * */
+			let mytank = document.getElementById('mytank');
+			mytank.left = 10;
+			mytank.top = 100;
+			//坦克做左移动
+			function leftMove(){
+				mytank.src='images/left.png';
+				mytank.left -=50;
+				console.log(mytank.left);
+			}
+
+			//坦克做右移动
+			function rightMove(){
+				mytank.src='images/right.png';
+				mytank.left +=50;
+				console.log(mytank.left);
+			}
+
+			//坦克做上移动
+			function downMove(){
+				mytank.src='images/down.png';
+				mytank.top -=50;
+				console.log(mytank.top);
+			}
+
+			//坦克做下移动
+			function upMove(){
+				mytank.src='images/up.png';
+				mytank.top +=50;
+				console.log(mytank.top);
+			}
+			
+			
+			document.onkeydown = function(w){
+				//按键w向上运动
+				if(w.keyCode == 87&&mytank.top!=0){
+					downMove();
+				}
+				
+				//按键s向下运动
+				if(w.keyCode == 83&&mytank.top<650){
+					upMove();
+				}
+
+				//按键a向左运动
+				if(w.keyCode == 65&&mytank.left!=10){
+					leftMove();
+				}
+
+				//按键d向右运动
+				if(w.keyCode == 68&&mytank.left<1400){
+					rightMove();
+				}
+
+				mytank.style.left=mytank.left+"px",
+				mytank.style.top=mytank.top+"px";
+			}
+
+			//让页面禁用右键
+			document.oncontextmenu = function(even){
+				window.event.returnValue = false ;
+			}
+		</script>
+	</body>
+</html>
